@@ -60,13 +60,13 @@ export function ContactSection() {
     >
       <div className="max-w-6xl mx-auto w-full">
         {/* Section title */}
-        <div className={`text-center mb-16 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-          <h2 className="text-5xl md:text-6xl font-black mb-6">
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-plasma-pink to-aurora-green neon-glow">
+        <div className={`text-center mb-20 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+          <h2 className="text-4xl md:text-5xl font-light mb-8 font-elegant tracking-wider">
+            <span className="text-transparent bg-clip-text bg-elegant-gradient elegant-glow">
               CONNECT
             </span>
           </h2>
-          <p className="text-xl text-stardust-white/80 max-w-3xl mx-auto">
+          <p className="text-xl text-pearl-gray/90 max-w-3xl mx-auto font-light leading-relaxed">
             Ready to build the future together? Let's discuss opportunities, partnerships, or just exchange ideas about what's coming next.
           </p>
         </div>
@@ -75,66 +75,58 @@ export function ContactSection() {
           {/* Contact info */}
           <div className={`transition-all duration-1000 delay-300 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'}`}>
             <div className="space-y-8">
-              <div className="glass p-8 rounded-3xl relative overflow-hidden">
-                <div className="absolute inset-0 holographic opacity-20" />
-                <div className="relative z-10">
-                  <h3 className="text-3xl font-bold text-stellar-cyan mb-6 neon-glow">
-                    Current Status
-                  </h3>
-                  <div className="space-y-4">
-                    <div className="flex items-center space-x-3">
-                      <div className="w-3 h-3 bg-aurora-green rounded-full animate-pulse" />
-                      <span className="text-stardust-white">Building Ventry - AI for business optimization</span>
-                    </div>
-                    <div className="flex items-center space-x-3">
-                      <div className="w-3 h-3 bg-energy-yellow rounded-full animate-pulse" />
-                      <span className="text-stardust-white">Scaling Kairoo - Social practice platform</span>
-                    </div>
-                    <div className="flex items-center space-x-3">
-                      <div className="w-3 h-3 bg-plasma-pink rounded-full animate-pulse" />
-                      <span className="text-stardust-white">Open to investor conversations</span>
-                    </div>
+              <div className="glass-card p-10">
+                <h3 className="text-3xl font-light text-amber-glow mb-8 elegant-glow font-elegant tracking-wide">
+                  Current Status
+                </h3>
+                <div className="space-y-5">
+                  <div className="flex items-center space-x-4">
+                    <div className="w-3 h-3 bg-amber-glow rounded-full animate-subtle-twinkle" />
+                    <span className="text-pearl-gray/90 font-light">Building Ventry - AI for business optimization</span>
+                  </div>
+                  <div className="flex items-center space-x-4">
+                    <div className="w-3 h-3 bg-gold-accent rounded-full animate-subtle-twinkle" />
+                    <span className="text-pearl-gray/90 font-light">Scaling Kairoo - Social practice platform</span>
+                  </div>
+                  <div className="flex items-center space-x-4">
+                    <div className="w-3 h-3 bg-crystal-blue rounded-full animate-subtle-twinkle" />
+                    <span className="text-pearl-gray/90 font-light">Open to investor conversations</span>
                   </div>
                 </div>
               </div>
 
-              <div className="glass p-8 rounded-3xl relative overflow-hidden">
-                <div className="absolute inset-0 holographic opacity-20" />
-                <div className="relative z-10">
-                  <h3 className="text-3xl font-bold text-plasma-pink mb-6">
-                    Interests
-                  </h3>
-                  <ul className="space-y-3 text-stardust-white/90">
-                    <li className="flex items-center space-x-3">
-                      <div className="w-2 h-2 bg-stellar-cyan rounded-full" />
-                      <span>AI/ML and reinforcement learning</span>
-                    </li>
-                    <li className="flex items-center space-x-3">
-                      <div className="w-2 h-2 bg-stellar-cyan rounded-full" />
-                      <span>Startup partnerships and investments</span>
-                    </li>
-                    <li className="flex items-center space-x-3">
-                      <div className="w-2 h-2 bg-stellar-cyan rounded-full" />
-                      <span>Technology for social impact</span>
-                    </li>
-                    <li className="flex items-center space-x-3">
-                      <div className="w-2 h-2 bg-stellar-cyan rounded-full" />
-                      <span>Future of human-AI collaboration</span>
-                    </li>
-                  </ul>
-                </div>
+              <div className="glass-card p-10">
+                <h3 className="text-3xl font-light text-gold-accent mb-8 font-elegant tracking-wide">
+                  Interests
+                </h3>
+                <ul className="space-y-4 text-pearl-gray/90">
+                  <li className="flex items-center space-x-4">
+                    <div className="w-2 h-2 bg-amber-glow rounded-full animate-subtle-twinkle" />
+                    <span className="font-light">AI/ML and reinforcement learning</span>
+                  </li>
+                  <li className="flex items-center space-x-4">
+                    <div className="w-2 h-2 bg-amber-glow rounded-full animate-subtle-twinkle" />
+                    <span className="font-light">Startup partnerships and investments</span>
+                  </li>
+                  <li className="flex items-center space-x-4">
+                    <div className="w-2 h-2 bg-amber-glow rounded-full animate-subtle-twinkle" />
+                    <span className="font-light">Technology for social impact</span>
+                  </li>
+                  <li className="flex items-center space-x-4">
+                    <div className="w-2 h-2 bg-amber-glow rounded-full animate-subtle-twinkle" />
+                    <span className="font-light">Future of human-AI collaboration</span>
+                  </li>
+                </ul>
               </div>
             </div>
           </div>
 
           {/* Contact form */}
           <div className={`transition-all duration-1000 delay-500 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'}`}>
-            <div className="glass p-8 rounded-3xl relative overflow-hidden">
-              <div className="absolute inset-0 holographic opacity-20" />
-              
-              <form onSubmit={handleSubmit} className="relative z-10 space-y-6">
+            <div className="glass-card p-10">
+              <form onSubmit={handleSubmit} className="space-y-8">
                 <div>
-                  <label className="block text-stellar-cyan font-medium mb-2">
+                  <label className="block text-amber-glow font-medium mb-3 tracking-wide">
                     Name
                   </label>
                   <input
@@ -143,13 +135,13 @@ export function ContactSection() {
                     value={formData.name}
                     onChange={handleInputChange}
                     required
-                    className="w-full px-4 py-3 bg-cosmic-blue/50 border border-stellar-cyan/30 rounded-xl text-stardust-white placeholder-stardust-white/50 focus:border-stellar-cyan focus:outline-none focus:ring-2 focus:ring-stellar-cyan/20 transition-all duration-300"
+                    className="w-full px-5 py-4 bg-deep-space/50 border border-amber-glow/20 rounded-2xl text-pearl-gray placeholder-pearl-gray/50 focus:border-amber-glow/50 focus:outline-none focus:ring-2 focus:ring-amber-glow/10 transition-all duration-500 font-light backdrop-blur-sm"
                     placeholder="Your name"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-stellar-cyan font-medium mb-2">
+                  <label className="block text-amber-glow font-medium mb-3 tracking-wide">
                     Email
                   </label>
                   <input
@@ -158,13 +150,13 @@ export function ContactSection() {
                     value={formData.email}
                     onChange={handleInputChange}
                     required
-                    className="w-full px-4 py-3 bg-cosmic-blue/50 border border-stellar-cyan/30 rounded-xl text-stardust-white placeholder-stardust-white/50 focus:border-stellar-cyan focus:outline-none focus:ring-2 focus:ring-stellar-cyan/20 transition-all duration-300"
+                    className="w-full px-5 py-4 bg-deep-space/50 border border-amber-glow/20 rounded-2xl text-pearl-gray placeholder-pearl-gray/50 focus:border-amber-glow/50 focus:outline-none focus:ring-2 focus:ring-amber-glow/10 transition-all duration-500 font-light backdrop-blur-sm"
                     placeholder="your@email.com"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-stellar-cyan font-medium mb-2">
+                  <label className="block text-amber-glow font-medium mb-3 tracking-wide">
                     Message
                   </label>
                   <textarea
@@ -173,7 +165,7 @@ export function ContactSection() {
                     onChange={handleInputChange}
                     required
                     rows={5}
-                    className="w-full px-4 py-3 bg-cosmic-blue/50 border border-stellar-cyan/30 rounded-xl text-stardust-white placeholder-stardust-white/50 focus:border-stellar-cyan focus:outline-none focus:ring-2 focus:ring-stellar-cyan/20 transition-all duration-300 resize-none"
+                    className="w-full px-5 py-4 bg-deep-space/50 border border-amber-glow/20 rounded-2xl text-pearl-gray placeholder-pearl-gray/50 focus:border-amber-glow/50 focus:outline-none focus:ring-2 focus:ring-amber-glow/10 transition-all duration-500 resize-none font-light backdrop-blur-sm"
                     placeholder="Tell me about your project, idea, or how we can collaborate..."
                   />
                 </div>
@@ -181,24 +173,26 @@ export function ContactSection() {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className={`w-full py-4 px-6 rounded-xl font-bold text-lg transition-all duration-300 relative overflow-hidden ${
+                  className={`w-full py-5 px-8 rounded-2xl font-medium text-lg transition-all duration-500 tracking-wide ${
                     isSubmitting
-                      ? 'bg-cosmic-blue/50 text-stardust-white/50 cursor-not-allowed'
+                      ? 'premium-button opacity-50 cursor-not-allowed'
                       : submitStatus === 'success'
-                      ? 'bg-aurora-green text-cosmic-blue neon-border'
-                      : 'bg-gradient-to-r from-stellar-cyan to-plasma-pink text-cosmic-blue hover:from-plasma-pink hover:to-energy-yellow neon-border'
+                      ? 'premium-button bg-amber-glow/20 border-amber-glow/60'
+                      : 'premium-button hover:scale-105'
                   }`}
                 >
-                  {isSubmitting ? (
-                    <div className="flex items-center justify-center space-x-2">
-                      <div className="w-5 h-5 border-2 border-stardust-white/30 border-t-stardust-white rounded-full animate-spin" />
-                      <span>Transmitting...</span>
-                    </div>
-                  ) : submitStatus === 'success' ? (
-                    'Message Sent Successfully!'
-                  ) : (
-                    'Send Message'
-                  )}
+                  <span className="text-amber-glow">
+                    {isSubmitting ? (
+                      <div className="flex items-center justify-center space-x-3">
+                        <div className="w-4 h-4 border-2 border-amber-glow/30 border-t-amber-glow rounded-full animate-spin" />
+                        <span>Sending...</span>
+                      </div>
+                    ) : submitStatus === 'success' ? (
+                      '✨ Message Sent Successfully!'
+                    ) : (
+                      'Send Message'
+                    )}
+                  </span>
                 </button>
               </form>
             </div>
@@ -206,19 +200,19 @@ export function ContactSection() {
         </div>
 
         {/* Footer */}
-        <div className={`text-center mt-16 transition-all duration-1000 delay-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-          <div className="glass p-6 rounded-2xl inline-block">
-            <p className="text-stardust-white/80">
+        <div className={`text-center mt-20 transition-all duration-1000 delay-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+          <div className="glass p-8 rounded-3xl inline-block">
+            <p className="text-pearl-gray/80 font-light tracking-wide">
               © 2024 Jiaren. Building the future, one iteration at a time.
             </p>
           </div>
         </div>
       </div>
 
-      {/* Background decorative elements */}
+      {/* Elegant background elements */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <div className="absolute top-10 right-10 w-28 h-28 border border-plasma-pink/20 rotate-45 animate-float" />
-        <div className="absolute bottom-10 left-10 w-24 h-24 border border-aurora-green/20 rounded-full animate-float" style={{ animationDelay: '1s' }} />
+        <div className="absolute top-10 right-10 w-20 h-20 border border-amber-glow/10 rounded-full animate-gentle-float opacity-20" />
+        <div className="absolute bottom-10 left-10 w-16 h-16 border border-gold-accent/15 rounded-full animate-gentle-float opacity-30" style={{ animationDelay: '2s' }} />
       </div>
     </section>
   )

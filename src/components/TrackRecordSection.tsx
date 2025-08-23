@@ -80,13 +80,13 @@ export function TrackRecordSection() {
     >
       <div className="max-w-7xl mx-auto w-full">
         {/* Section title */}
-        <div className={`text-center mb-16 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-          <h2 className="text-5xl md:text-6xl font-black mb-6">
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-stellar-cyan to-plasma-pink neon-glow">
-              TRACK RECORD
+        <div className={`text-center mb-20 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+          <h2 className="text-4xl md:text-5xl font-light mb-8 font-elegant tracking-wider">
+            <span className="text-transparent bg-clip-text bg-elegant-gradient elegant-glow">
+              EXPERIENCE
             </span>
           </h2>
-          <p className="text-xl text-stardust-white/80 max-w-3xl mx-auto">
+          <p className="text-xl text-pearl-gray/90 max-w-3xl mx-auto font-light leading-relaxed">
             Building the future through iterative innovation and calculated risks
           </p>
         </div>
@@ -99,26 +99,26 @@ export function TrackRecordSection() {
                 <button
                   key={achievement.id}
                   onClick={() => setSelectedAchievement(achievement.id)}
-                  className={`w-full text-left p-6 rounded-2xl border-2 transition-all duration-300 ${
+                  className={`w-full text-left p-8 rounded-3xl transition-all duration-500 ${
                     selectedAchievement === achievement.id
-                      ? 'border-stellar-cyan bg-stellar-cyan/10 neon-border'
-                      : 'border-stardust-white/20 hover:border-stellar-cyan/50 glass'
+                      ? 'glass-card border-amber-glow/40 bg-amber-glow/5 soft-border'
+                      : 'glass-card hover:border-amber-glow/30'
                   }`}
                 >
-                  <div className="flex items-center justify-between mb-2">
-                    <h3 className="text-2xl font-bold text-stellar-cyan">
+                  <div className="flex items-center justify-between mb-4">
+                    <h3 className="text-2xl font-semibold text-amber-glow font-elegant">
                       {achievement.company}
                     </h3>
-                    <span className="text-sm text-energy-yellow font-medium">
+                    <span className="text-sm text-gold-accent font-medium tracking-wide">
                       {achievement.duration}
                     </span>
                   </div>
-                  <p className="text-stardust-white/80 font-medium">
+                  <p className="text-pearl-gray/90 font-medium mb-4">
                     {achievement.role}
                   </p>
-                  <div className="mt-3 flex items-center space-x-2">
-                    <div className="w-2 h-2 bg-aurora-green rounded-full animate-pulse" />
-                    <span className="text-aurora-green text-sm font-medium">
+                  <div className="flex items-center space-x-3">
+                    <div className="w-2 h-2 bg-amber-glow rounded-full animate-subtle-twinkle" />
+                    <span className="text-amber-glow text-sm font-medium tracking-wide">
                       {achievement.metrics || 'Active'}
                     </span>
                   </div>
@@ -129,72 +129,67 @@ export function TrackRecordSection() {
 
           {/* Achievement details */}
           <div className={`lg:col-span-2 transition-all duration-1000 delay-500 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'}`}>
-            <div className="glass p-8 rounded-3xl relative overflow-hidden h-full">
-              {/* Holographic overlay */}
-              <div className="absolute inset-0 holographic opacity-20" />
-              
-              <div className="relative z-10">
-                {/* Header */}
-                <div className="flex items-center justify-between mb-6">
-                  <div>
-                    <h3 className="text-4xl font-black text-stellar-cyan neon-glow mb-2">
-                      {selectedData.company}
-                    </h3>
-                    <p className="text-xl text-plasma-pink font-bold">
-                      {selectedData.role}
-                    </p>
-                  </div>
-                  {selectedData.valuation && (
-                    <div className="text-right">
-                      <p className="text-sm text-stardust-white/60">Valuation</p>
-                      <p className="text-2xl font-bold text-energy-yellow">
-                        {selectedData.valuation}
-                      </p>
-                    </div>
-                  )}
+            <div className="glass-card p-12 h-full">
+              {/* Header */}
+              <div className="flex items-center justify-between mb-8">
+                <div>
+                  <h3 className="text-4xl font-light text-amber-glow elegant-glow mb-3 font-elegant tracking-wide">
+                    {selectedData.company}
+                  </h3>
+                  <p className="text-xl text-gold-accent font-medium">
+                    {selectedData.role}
+                  </p>
                 </div>
-
-                {/* Description */}
-                <p className="text-lg text-stardust-white/90 mb-8 leading-relaxed">
-                  {selectedData.description}
-                </p>
-
-                {/* Highlights */}
-                <div className="mb-8">
-                  <h4 className="text-xl font-bold text-aurora-green mb-4">Key Achievements</h4>
-                  <ul className="space-y-3">
-                    {selectedData.highlights.map((highlight, index) => (
-                      <li key={index} className="flex items-start space-x-3">
-                        <div className="w-2 h-2 bg-stellar-cyan rounded-full mt-2 flex-shrink-0" />
-                        <span className="text-stardust-white/90">{highlight}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                {/* Philosophy (for Kairoo) */}
-                {selectedData.philosophy && (
-                  <div className="border-t border-stardust-white/20 pt-6">
-                    <h4 className="text-xl font-bold text-plasma-pink mb-3">Philosophy</h4>
-                    <p className="text-stardust-white/90 italic">
-                      {selectedData.philosophy}
+                {selectedData.valuation && (
+                  <div className="text-right glass px-6 py-4 rounded-2xl">
+                    <p className="text-sm text-pearl-gray/70 font-medium tracking-wide uppercase">Valuation</p>
+                    <p className="text-2xl font-semibold text-amber-glow mt-1">
+                      {selectedData.valuation}
                     </p>
                   </div>
                 )}
               </div>
 
-              {/* Floating elements */}
-              <div className="absolute top-4 right-4 w-20 h-20 border border-stellar-cyan/30 rounded-full animate-float" />
-              <div className="absolute bottom-4 left-4 w-16 h-16 border border-plasma-pink/30 rounded-full animate-float" style={{ animationDelay: '1s' }} />
+              {/* Description */}
+              <p className="text-lg text-pearl-gray/90 mb-10 leading-relaxed font-light">
+                {selectedData.description}
+              </p>
+
+              {/* Highlights */}
+              <div className="mb-10">
+                <h4 className="text-xl font-semibold text-amber-glow mb-6 tracking-wide">Key Achievements</h4>
+                <ul className="space-y-4">
+                  {selectedData.highlights.map((highlight, index) => (
+                    <li key={index} className="flex items-start space-x-4">
+                      <div className="w-2 h-2 bg-gold-accent rounded-full mt-2 flex-shrink-0 animate-subtle-twinkle" />
+                      <span className="text-pearl-gray/90 leading-relaxed">{highlight}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* Philosophy (for Kairoo) */}
+              {selectedData.philosophy && (
+                <div className="border-t border-amber-glow/20 pt-8">
+                  <h4 className="text-xl font-semibold text-gold-accent mb-4 tracking-wide">Philosophy</h4>
+                  <p className="text-pearl-gray/90 italic font-light leading-relaxed">
+                    {selectedData.philosophy}
+                  </p>
+                </div>
+              )}
+
+              {/* Elegant floating elements */}
+              <div className="absolute top-6 right-6 w-12 h-12 border border-amber-glow/20 rounded-full animate-gentle-float opacity-30" />
+              <div className="absolute bottom-6 left-6 w-8 h-8 border border-gold-accent/15 rounded-full animate-gentle-float opacity-40" style={{ animationDelay: '2s' }} />
             </div>
           </div>
         </div>
       </div>
 
-      {/* Background decorative elements */}
+      {/* Elegant background elements */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <div className="absolute top-1/4 left-0 w-32 h-32 border border-energy-yellow/20 rotate-45 animate-float" />
-        <div className="absolute bottom-1/4 right-0 w-24 h-24 border border-aurora-green/20 rotate-12 animate-float" style={{ animationDelay: '2s' }} />
+        <div className="absolute top-1/4 left-0 w-24 h-24 border border-amber-glow/10 rounded-full animate-gentle-float opacity-20" />
+        <div className="absolute bottom-1/4 right-0 w-16 h-16 border border-gold-accent/15 rounded-full animate-gentle-float opacity-30" style={{ animationDelay: '3s' }} />
       </div>
     </section>
   )

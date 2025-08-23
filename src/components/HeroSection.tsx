@@ -26,73 +26,68 @@ export function HeroSection() {
   }, [])
 
   return (
-    <section id="hero" className="relative min-h-screen flex items-center justify-center px-6 py-20">
-      {/* Floating geometric shapes */}
+    <section id="hero" className="relative min-h-screen flex items-center justify-center px-6 py-32">
+      {/* Elegant floating elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-20 left-10 w-20 h-20 border border-stellar-cyan/30 rotate-45 animate-float" />
-        <div className="absolute top-40 right-20 w-16 h-16 border border-plasma-pink/30 rotate-12 animate-float" style={{ animationDelay: '1s' }} />
-        <div className="absolute bottom-40 left-20 w-12 h-12 border border-energy-yellow/30 rotate-45 animate-float" style={{ animationDelay: '2s' }} />
-        <div className="absolute bottom-20 right-10 w-24 h-24 border border-aurora-green/30 rotate-12 animate-float" style={{ animationDelay: '0.5s' }} />
+        <div className="absolute top-20 left-10 w-16 h-16 rounded-full border border-amber-glow/20 animate-gentle-float opacity-40" />
+        <div className="absolute top-40 right-20 w-12 h-12 rounded-full border border-gold-accent/15 animate-gentle-float opacity-30" style={{ animationDelay: '2s' }} />
+        <div className="absolute bottom-40 left-20 w-8 h-8 rounded-full border border-crystal-blue/25 animate-gentle-float opacity-50" style={{ animationDelay: '4s' }} />
+        <div className="absolute bottom-20 right-10 w-20 h-20 rounded-full border border-amber-glow/10 animate-gentle-float opacity-20" style={{ animationDelay: '1s' }} />
       </div>
 
       <div className="relative z-10 max-w-6xl mx-auto text-center">
-        {/* Main name with holographic effect */}
+        {/* Elegant name display */}
         <div className={`transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-          <h1 className="text-8xl md:text-9xl lg:text-[12rem] font-black mb-8 relative">
+          <h1 className="text-6xl md:text-7xl lg:text-8xl font-light mb-12 relative font-elegant tracking-wider">
             <span className="relative inline-block">
-              <span className="absolute inset-0 text-stellar-cyan neon-glow animate-pulse-glow">
-                JIAREN
-              </span>
-              <span className="relative text-transparent bg-clip-text bg-gradient-to-r from-stellar-cyan via-plasma-pink to-energy-yellow">
+              <span className="text-transparent bg-clip-text bg-elegant-gradient elegant-glow">
                 JIAREN
               </span>
             </span>
           </h1>
         </div>
 
-        {/* Subtitle with glass effect */}
+        {/* Elegant subtitle */}
         <div className={`transition-all duration-1000 delay-500 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-          <div className="glass p-8 mb-12 max-w-4xl mx-auto relative overflow-hidden">
-            {/* Holographic overlay */}
-            <div className="absolute inset-0 holographic opacity-30" />
-            
-            <p className="text-lg md:text-xl lg:text-2xl leading-relaxed text-stardust-white/90 relative z-10 font-medium">
+          <div className="glass-card p-12 mb-16 max-w-5xl mx-auto">
+            <p className="text-lg md:text-xl lg:text-2xl leading-relaxed text-pearl-gray font-light tracking-wide">
               {typedText}
-              <span className="animate-pulse">|</span>
+              <span className="animate-subtle-twinkle text-amber-glow">|</span>
             </p>
           </div>
         </div>
 
         {/* Status indicator */}
         <div className={`transition-all duration-1000 delay-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-          <div className="inline-flex items-center space-x-4 glass p-4 rounded-full">
-            <div className="w-3 h-3 bg-aurora-green rounded-full animate-pulse" />
-            <span className="text-aurora-green font-medium">Currently Building</span>
+          <div className="inline-flex items-center space-x-4 glass-card px-6 py-3 premium-button">
+            <div className="w-2 h-2 bg-amber-glow rounded-full animate-subtle-twinkle" />
+            <span className="text-amber-glow font-medium text-sm tracking-wide">CURRENTLY BUILDING</span>
           </div>
         </div>
 
-        {/* Scroll indicator */}
-        <div className={`absolute bottom-10 left-1/2 transform -translate-x-1/2 transition-all duration-1000 delay-1500 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
-          <div className="flex flex-col items-center space-y-2 animate-bounce">
-            <span className="text-stellar-cyan text-sm font-medium">Explore</span>
-            <div className="w-6 h-10 border-2 border-stellar-cyan rounded-full flex justify-center">
-              <div className="w-1 h-3 bg-stellar-cyan rounded-full mt-2 animate-pulse" />
+        {/* Elegant scroll indicator */}
+        <div className={`absolute bottom-16 left-1/2 transform -translate-x-1/2 transition-all duration-1000 delay-1500 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
+          <div className="flex flex-col items-center space-y-3 animate-gentle-float">
+            <span className="text-amber-glow text-xs font-medium tracking-widest uppercase">Explore</span>
+            <div className="w-5 h-8 border border-amber-glow/50 rounded-full flex justify-center">
+              <div className="w-0.5 h-2 bg-amber-glow rounded-full mt-2 animate-subtle-twinkle" />
             </div>
           </div>
         </div>
       </div>
 
-      {/* Floating particles */}
+      {/* Subtle floating particles */}
       <div className="absolute inset-0 pointer-events-none">
-        {[...Array(20)].map((_, i) => (
+        {[...Array(12)].map((_, i) => (
           <div
             key={i}
-            className="absolute w-1 h-1 bg-stellar-cyan rounded-full opacity-60"
+            className="absolute stardust opacity-40"
             style={{
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 5}s`,
-              animation: `twinkle 3s ease-in-out infinite`,
+              width: `${Math.random() * 3 + 1}px`,
+              height: `${Math.random() * 3 + 1}px`,
+              animationDelay: `${Math.random() * 8}s`,
             }}
           />
         ))}

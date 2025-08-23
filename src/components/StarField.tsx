@@ -5,15 +5,18 @@ import { useEffect, useRef } from 'react'
 interface Star {
   x: number
   y: number
-  z: number
+  opacity: number
   size: number
-  speed: number
+  twinkleSpeed: number
+  driftX: number
+  driftY: number
 }
 
 export function StarField() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const starsRef = useRef<Star[]>([])
   const animationRef = useRef<number>()
+  const timeRef = useRef<number>(0)
 
   useEffect(() => {
     const canvas = canvasRef.current
@@ -30,85 +33,93 @@ export function StarField() {
     resizeCanvas()
     window.addEventListener('resize', resizeCanvas)
 
-    // Initialize stars
+    // Initialize elegant stars
     const initStars = () => {
       starsRef.current = []
-      for (let i = 0; i < 200; i++) {
+      for (let i = 0; i < 80; i++) {
         starsRef.current.push({
           x: Math.random() * canvas.width,
           y: Math.random() * canvas.height,
-          z: Math.random() * 1000,
-          size: Math.random() * 2 + 0.5,
-          speed: Math.random() * 0.5 + 0.1
+          opacity: Math.random() * 0.8 + 0.2,
+          size: Math.random() * 1.5 + 0.5,
+          twinkleSpeed: Math.random() * 0.02 + 0.01,
+          driftX: (Math.random() - 0.5) * 0.2,
+          driftY: (Math.random() - 0.5) * 0.1
         })
       }
     }
     initStars()
 
-    // Animation loop
-    const animate = () => {
+    // Elegant animation loop
+    const animate = (currentTime: number) => {
+      timeRef.current = currentTime * 0.001 // Convert to seconds
+      
       ctx.clearRect(0, 0, canvas.width, canvas.height)
       
-      // Create gradient background
+      // Create subtle depth gradient
       const gradient = ctx.createRadialGradient(
         canvas.width / 2, canvas.height / 2, 0,
-        canvas.width / 2, canvas.height / 2, Math.max(canvas.width, canvas.height)
+        canvas.width / 2, canvas.height / 2, Math.max(canvas.width, canvas.height) / 2
       )
-      gradient.addColorStop(0, 'rgba(26, 11, 46, 0.8)')
-      gradient.addColorStop(0.5, 'rgba(11, 20, 38, 0.6)')
-      gradient.addColorStop(1, 'rgba(0, 0, 0, 0.9)')
+      gradient.addColorStop(0, 'rgba(27, 41, 81, 0.1)')
+      gradient.addColorStop(0.7, 'rgba(10, 14, 26, 0.3)')
+      gradient.addColorStop(1, 'rgba(10, 14, 26, 0.5)')
       
       ctx.fillStyle = gradient
       ctx.fillRect(0, 0, canvas.width, canvas.height)
 
-      // Draw and update stars
+      // Draw elegant stars
       starsRef.current.forEach((star, index) => {
-        // Move star
-        star.z -= star.speed
+        // Gentle drift movement
+        star.x += star.driftX
+        star.y += star.driftY
         
-        // Reset star if it's too close
-        if (star.z <= 0) {
-          star.x = Math.random() * canvas.width
-          star.y = Math.random() * canvas.height
-          star.z = 1000
-        }
+        // Wrap around screen edges
+        if (star.x < 0) star.x = canvas.width
+        if (star.x > canvas.width) star.x = 0
+        if (star.y < 0) star.y = canvas.height
+        if (star.y > canvas.height) star.y = 0
 
-        // Calculate screen position
-        const screenX = (star.x - canvas.width / 2) * (500 / star.z) + canvas.width / 2
-        const screenY = (star.y - canvas.height / 2) * (500 / star.z) + canvas.height / 2
-        const screenSize = star.size * (500 / star.z)
+        // Gentle twinkling
+        const twinkle = Math.sin(timeRef.current * star.twinkleSpeed + index) * 0.3 + 0.7
+        const currentOpacity = star.opacity * twinkle
 
-        // Only draw if star is on screen
-        if (screenX >= 0 && screenX <= canvas.width && screenY >= 0 && screenY <= canvas.height) {
-          // Create star glow
-          const opacity = Math.min(1, (1000 - star.z) / 1000)
-          const colors = ['#00F5FF', '#FF006E', '#FFD23F', '#39FF14']
-          const color = colors[index % colors.length]
-          
-          ctx.save()
-          ctx.globalAlpha = opacity
-          
-          // Draw star glow
-          const gradient = ctx.createRadialGradient(screenX, screenY, 0, screenX, screenY, screenSize * 3)
-          gradient.addColorStop(0, color)
-          gradient.addColorStop(1, 'transparent')
-          ctx.fillStyle = gradient
-          ctx.fillRect(screenX - screenSize * 3, screenY - screenSize * 3, screenSize * 6, screenSize * 6)
-          
-          // Draw star core
-          ctx.fillStyle = color
-          ctx.beginPath()
-          ctx.arc(screenX, screenY, screenSize, 0, Math.PI * 2)
-          ctx.fill()
-          
-          ctx.restore()
-        }
+        // Elegant color palette
+        const colors = [
+          'rgba(212, 165, 116, ', // Gold accent
+          'rgba(255, 179, 102, ', // Amber glow
+          'rgba(232, 244, 253, ', // Crystal blue
+        ]
+        const colorBase = colors[index % colors.length]
+        
+        ctx.save()
+        ctx.globalAlpha = currentOpacity
+        
+        // Draw soft star glow
+        const glowSize = star.size * 8
+        const starGradient = ctx.createRadialGradient(star.x, star.y, 0, star.x, star.y, glowSize)
+        starGradient.addColorStop(0, colorBase + '0.8)')
+        starGradient.addColorStop(0.3, colorBase + '0.3)')
+        starGradient.addColorStop(1, colorBase + '0)')
+        
+        ctx.fillStyle = starGradient
+        ctx.beginPath()
+        ctx.arc(star.x, star.y, glowSize, 0, Math.PI * 2)
+        ctx.fill()
+        
+        // Draw star core
+        ctx.fillStyle = colorBase + '1)'
+        ctx.beginPath()
+        ctx.arc(star.x, star.y, star.size * 0.8, 0, Math.PI * 2)
+        ctx.fill()
+        
+        ctx.restore()
       })
 
       animationRef.current = requestAnimationFrame(animate)
     }
 
-    animate()
+    animationRef.current = requestAnimationFrame(animate)
 
     return () => {
       window.removeEventListener('resize', resizeCanvas)
@@ -121,7 +132,7 @@ export function StarField() {
   return (
     <canvas
       ref={canvasRef}
-      className="fixed inset-0 w-full h-full pointer-events-none z-0"
+      className="fixed inset-0 w-full h-full pointer-events-none z-0 opacity-70"
       style={{ background: 'transparent' }}
     />
   )
