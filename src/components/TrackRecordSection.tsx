@@ -1,6 +1,7 @@
 'use client'
 
-import { useState, useRef, useEffect } from 'react'
+import { useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 
 interface Achievement {
   id: string
@@ -53,105 +54,280 @@ export function TrackRecordSection() {
 
   const selectedData = achievements.find(a => a.id === selectedAchievement) || achievements[0]
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.3,
+        delayChildren: 0.2
+      }
+    }
+  }
+
+  const cardVariants = {
+    hidden: { 
+      opacity: 0, 
+      y: 40,
+      scale: 0.95
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: {
+        duration: 0.8,
+        ease: "easeOut"
+      }
+    }
+  }
+
+  const detailsVariants = {
+    hidden: { opacity: 0, x: 30 },
+    visible: { 
+      opacity: 1, 
+      x: 0,
+      transition: {
+        duration: 0.6,
+        ease: "easeOut"
+      }
+    },
+    exit: { 
+      opacity: 0, 
+      x: -30,
+      transition: {
+        duration: 0.3
+      }
+    }
+  }
+
   return (
-    <section id="track-record" className="section bg-gray-light">
-      <div className="container">
+    <section 
+      id="track-record" 
+      className="py-32 px-8"
+      style={{ background: 'var(--bg-primary)' }}
+    >
+      <div className="max-w-7xl mx-auto">
         {/* Section title */}
-        <div className="text-center mb-16">
-          <h2 className="text-section text-primary-black mb-8">
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 1.2, ease: "easeOut" }}
+          className="text-center mb-20"
+        >
+          <h2 
+            className="text-5xl md:text-6xl font-bold mb-8"
+            style={{ 
+              color: 'var(--text-primary)',
+              letterSpacing: '-0.02em'
+            }}
+          >
             Experience
           </h2>
-          <p className="text-xl text-gray-dark max-w-3xl mx-auto">
+          <p 
+            className="text-xl md:text-2xl max-w-4xl mx-auto"
+            style={{ 
+              color: 'var(--text-dimmed)',
+              lineHeight: 1.8
+            }}
+          >
             Building the future through iterative innovation and calculated risks
           </p>
-        </div>
+        </motion.div>
 
         <div className="grid lg:grid-cols-3 gap-12">
           {/* Company selector */}
-          <div className="lg:col-span-1">
+          <motion.div 
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.3 }}
+            className="lg:col-span-1"
+          >
             <div className="space-y-6">
               {achievements.map((achievement, index) => (
-                <button
+                <motion.button
                   key={achievement.id}
+                  variants={cardVariants}
                   onClick={() => setSelectedAchievement(achievement.id)}
-                  className={`w-full text-left p-6 minimal-card transition-colors duration-200 ${
+                  className={`w-full text-left p-6 minimal-card transition-all duration-400 ${
                     selectedAchievement === achievement.id
-                      ? 'accent-border bg-primary-white'
-                      : 'bg-primary-white'
+                      ? 'accent-border scale-105'
+                      : ''
                   }`}
+                  whileHover={{
+                    scale: selectedAchievement === achievement.id ? 1.05 : 1.03,
+                    transition: { duration: 0.3 }
+                  }}
+                  whileTap={{ scale: 0.98 }}
                 >
                   <div className="flex items-center justify-between mb-3">
-                    <h3 className="text-xl font-bold text-primary-black">
+                    <h3 
+                      className="text-xl font-bold"
+                      style={{ color: 'var(--text-primary)' }}
+                    >
                       {achievement.company}
                     </h3>
-                    <span className="text-sm text-gray-medium font-medium">
+                    <span 
+                      className="text-sm font-medium"
+                      style={{ color: 'var(--text-secondary)' }}
+                    >
                       {achievement.duration}
                     </span>
                   </div>
-                  <p className="text-gray-dark font-medium mb-3">
+                  <p 
+                    className="font-medium mb-3"
+                    style={{ color: 'var(--text-dimmed)' }}
+                  >
                     {achievement.role}
                   </p>
-                  <div className="text-accent text-sm font-medium">
+                  <div 
+                    className="text-sm font-medium"
+                    style={{ color: 'var(--text-primary)' }}
+                  >
                     {achievement.metrics || 'Active'}
                   </div>
-                </button>
+                </motion.button>
               ))}
             </div>
-          </div>
+          </motion.div>
 
           {/* Achievement details */}
           <div className="lg:col-span-2">
-            <div className="minimal-card p-8 h-full">
-              {/* Header */}
-              <div className="flex items-center justify-between mb-8">
-                <div>
-                  <h3 className="text-3xl font-bold text-primary-black mb-2">
-                    {selectedData.company}
-                  </h3>
-                  <p className="text-lg text-gray-dark font-medium">
-                    {selectedData.role}
-                  </p>
-                </div>
-                {selectedData.valuation && (
-                  <div className="text-right">
-                    <p className="text-sm text-gray-medium font-medium uppercase tracking-wide">Valuation</p>
-                    <p className="text-xl font-bold text-accent mt-1">
-                      {selectedData.valuation}
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={selectedAchievement}
+                variants={detailsVariants}
+                initial="hidden"
+                animate="visible"
+                exit="exit"
+                className="minimal-card p-8 md:p-12 h-full"
+              >
+                {/* Header */}
+                <div className="flex items-center justify-between mb-8">
+                  <div>
+                    <h3 
+                      className="text-3xl md:text-4xl font-bold mb-2"
+                      style={{ color: 'var(--text-primary)' }}
+                    >
+                      {selectedData.company}
+                    </h3>
+                    <p 
+                      className="text-lg font-medium"
+                      style={{ color: 'var(--text-dimmed)' }}
+                    >
+                      {selectedData.role}
                     </p>
                   </div>
-                )}
-              </div>
-
-              {/* Description */}
-              <p className="text-lg text-gray-dark mb-8 leading-relaxed">
-                {selectedData.description}
-              </p>
-
-              {/* Highlights */}
-              <div className="mb-8">
-                <h4 className="text-lg font-bold text-primary-black mb-4">Key Achievements</h4>
-                <ul className="space-y-3">
-                  {selectedData.highlights.map((highlight, index) => (
-                    <li key={index} className="flex items-start space-x-3">
-                      <div className="w-1 h-1 bg-accent mt-2 flex-shrink-0" />
-                      <span className="text-gray-dark leading-relaxed">{highlight}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              {/* Philosophy (for Kairoo) */}
-              {selectedData.philosophy && (
-                <div className="border-t border-gray-light pt-6">
-                  <h4 className="text-lg font-bold text-primary-black mb-3">Philosophy</h4>
-                  <p className="text-gray-dark italic leading-relaxed">
-                    {selectedData.philosophy}
-                  </p>
+                  {selectedData.valuation && (
+                    <div className="text-right">
+                      <p 
+                        className="text-sm font-medium uppercase tracking-wide"
+                        style={{ color: 'var(--text-secondary)' }}
+                      >
+                        Valuation
+                      </p>
+                      <p 
+                        className="text-xl font-bold mt-1"
+                        style={{ color: 'var(--text-primary)' }}
+                      >
+                        {selectedData.valuation}
+                      </p>
+                    </div>
+                  )}
                 </div>
-              )}
-            </div>
+
+                {/* Description */}
+                <p 
+                  className="text-lg mb-8 leading-relaxed"
+                  style={{ 
+                    color: 'var(--text-dimmed)',
+                    lineHeight: 1.8
+                  }}
+                >
+                  {selectedData.description}
+                </p>
+
+                {/* Highlights */}
+                <div className="mb-8">
+                  <h4 
+                    className="text-lg font-bold mb-6"
+                    style={{ color: 'var(--text-primary)' }}
+                  >
+                    Key Achievements
+                  </h4>
+                  <ul className="space-y-4">
+                    {selectedData.highlights.map((highlight, index) => (
+                      <motion.li 
+                        key={index}
+                        initial={{ opacity: 0, x: 20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.5, delay: index * 0.1 }}
+                        className="flex items-start space-x-4"
+                      >
+                        <div 
+                          className="w-2 h-2 rounded-full mt-2 flex-shrink-0"
+                          style={{ backgroundColor: 'var(--text-primary)' }}
+                        />
+                        <span 
+                          className="leading-relaxed"
+                          style={{ 
+                            color: 'var(--text-dimmed)',
+                            lineHeight: 1.7
+                          }}
+                        >
+                          {highlight}
+                        </span>
+                      </motion.li>
+                    ))}
+                  </ul>
+                </div>
+
+                {/* Philosophy (for Kairoo) */}
+                {selectedData.philosophy && (
+                  <motion.div 
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: 0.3 }}
+                    className="pt-6"
+                    style={{ borderTop: '1px solid rgba(255, 255, 255, 0.1)' }}
+                  >
+                    <h4 
+                      className="text-lg font-bold mb-4"
+                      style={{ color: 'var(--text-primary)' }}
+                    >
+                      Philosophy
+                    </h4>
+                    <p 
+                      className="italic leading-relaxed"
+                      style={{ 
+                        color: 'var(--text-dimmed)',
+                        lineHeight: 1.8
+                      }}
+                    >
+                      {selectedData.philosophy}
+                    </p>
+                  </motion.div>
+                )}
+              </motion.div>
+            </AnimatePresence>
           </div>
         </div>
+
+        {/* Decorative element */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1.5, delay: 0.5 }}
+          className="flex justify-center mt-20"
+        >
+          <div 
+            className="w-16 h-px"
+            style={{ backgroundColor: 'rgba(255, 255, 255, 0.3)' }}
+          />
+        </motion.div>
       </div>
     </section>
   )

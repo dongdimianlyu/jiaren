@@ -4,12 +4,12 @@
 @tailwind utilities;
 
 :root {
-  --primary-black: #000000;
-  --primary-white: #FFFFFF;
-  --gray-light: #F5F5F5;
-  --gray-medium: #808080;
-  --gray-dark: #333333;
-  --accent: #B8860B;
+  --bg-primary: #000000;
+  --text-primary: #ffffff;
+  --text-secondary: #cccccc;
+  --text-dimmed: #e0e0e0;
+  --accent-subtle: #ffffff;
+  --particle-opacity: 0.4;
 }
 
 * {
@@ -23,16 +23,17 @@ body {
   max-width: 100vw;
   overflow-x: hidden;
   font-family: 'Inter', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
-  background: var(--primary-white);
-  color: var(--primary-black);
+  background: var(--bg-primary);
+  color: var(--text-primary);
   font-weight: 400;
-  line-height: 1.6;
+  line-height: 1.7;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 body {
-  background: var(--primary-white);
+  background: var(--bg-primary, #000000);
+  scroll-behavior: smooth;
 }
 
 /* Minimal scrollbar */
@@ -41,15 +42,16 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--gray-light);
+  background: rgba(255, 255, 255, 0.1);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--gray-medium);
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 2px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--gray-dark);
+  background: rgba(255, 255, 255, 0.5);
 }
 
 /* Brutalist utility classes */
@@ -64,17 +66,19 @@ body {
 }
 
 .minimal-card {
-  background: var(--primary-white);
-  border: 1px solid var(--gray-light);
-  transition: border-color 0.2s ease;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.4s ease;
+  backdrop-filter: blur(10px);
 }
 
 .minimal-card:hover {
-  border-color: var(--gray-medium);
+  border-color: rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
 }
 
 .accent-border {
-  border-left: 4px solid var(--accent);
+  border-left: 2px solid var(--text-primary);
 }
 
 /* Typography hierarchy */
@@ -106,38 +110,114 @@ html {
 
 /* Selection styling */
 ::selection {
-  background: var(--accent);
-  color: var(--primary-white);
+  background: rgba(255, 255, 255, 0.2);
+  color: var(--text-primary);
 }
 
 /* Focus states */
 button:focus,
 a:focus {
-  outline: 2px solid var(--accent);
+  outline: 2px solid rgba(255, 255, 255, 0.5);
   outline-offset: 2px;
 }
 
-/* Minimal button styles */
+/* Elegant button styles */
 .minimal-button {
-  background: var(--primary-white);
-  border: 1px solid var(--primary-black);
-  color: var(--primary-black);
-  transition: all 0.2s ease;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: var(--text-primary);
+  transition: all 0.4s ease;
+  backdrop-filter: blur(10px);
 }
 
 .minimal-button:hover {
-  background: var(--primary-black);
-  color: var(--primary-white);
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.4);
+  transform: translateY(-1px);
 }
 
-.accent-button {
-  background: var(--accent);
-  border: 1px solid var(--accent);
-  color: var(--primary-white);
-  transition: all 0.2s ease;
+/* Particle system styles */
+.particles-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
 }
 
-.accent-button:hover {
-  background: transparent;
-  color: var(--accent);
+.particle {
+  position: absolute;
+  background: var(--text-primary);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+/* Animation classes */
+.fade-in {
+  animation: fadeIn 1.2s ease-out;
+}
+
+.fade-in-up {
+  animation: fadeInUp 1.2s ease-out;
+}
+
+.stagger-delay-1 {
+  animation-delay: 0.1s;
+}
+
+.stagger-delay-2 {
+  animation-delay: 0.2s;
+}
+
+.stagger-delay-3 {
+  animation-delay: 0.3s;
+}
+
+/* Keyframes */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Typing animation */
+.typing-animation {
+  overflow: hidden;
+  border-right: 2px solid var(--text-primary);
+  white-space: nowrap;
+  animation: typing 3s steps(40, end), blink-caret 0.75s step-end infinite;
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes blink-caret {
+  from, to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: var(--text-primary);
+  }
 }

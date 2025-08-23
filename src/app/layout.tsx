@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
+import { LayoutWrapper } from '@/components/LayoutWrapper'
 
 const inter = Inter({ 
   subsets: ['latin'],
@@ -14,7 +15,7 @@ export const metadata: Metadata = {
   keywords: ['entrepreneur', 'startup', 'founder', 'AI', 'technology', 'future'],
   authors: [{ name: 'Jiaren' }],
   viewport: 'width=device-width, initial-scale=1',
-  themeColor: '#0B1426',
+  themeColor: '#000000',
   openGraph: {
     title: 'Jiaren - Building the Future',
     description: 'Building startups: iterating, failing, and learning. Taking hyper-risks for leverage before superintelligence.',
@@ -39,11 +40,10 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
       </head>
-      <body className={`${inter.className} min-h-screen bg-primary-white text-primary-black overflow-x-hidden font-brutalist`}>
-        <div className="min-h-screen">
-          {/* Main content */}
+      <body className={`${inter.className} min-h-screen overflow-x-hidden`}>
+        <LayoutWrapper>
           {children}
-        </div>
+        </LayoutWrapper>
       </body>
     </html>
   )
