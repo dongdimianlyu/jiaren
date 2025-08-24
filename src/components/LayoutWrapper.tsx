@@ -17,7 +17,7 @@ export function LayoutWrapper({ children }: LayoutWrapperProps) {
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ duration: 1.2, ease: "easeOut" }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
         className="relative z-20"
         style={{ minHeight: '100vh' }}
       >

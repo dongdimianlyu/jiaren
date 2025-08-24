@@ -6,7 +6,7 @@ import { useEffect, useRef, useCallback } from 'react'
 const REFINED_PARTICLE_CONFIG = {
   count: 120,
   sizes: [1, 2, 3, 4], // Mix of sizes for depth
-  opacities: [0.1, 0.2, 0.3, 0.5, 0.8], // Varied transparency
+  opacities: [0.2, 0.3, 0.4, 0.6, 0.9], // Varied transparency - made more visible
   baseSpeed: 0.05, // Very slow constant drift
   cursorRadius: 150,
   cursorAttraction: 0.008, // Subtle magnetism

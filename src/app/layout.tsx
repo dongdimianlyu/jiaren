@@ -11,19 +11,19 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: 'Jiaren - Building the Future',
-  description: 'Hyyper-risks for leverage before superintelligence.',
+  description: 'Hyper-risks for leverage before superintelligence.',
   keywords: ['entrepreneur', 'startup', 'founder', 'AI', 'technology', 'future'],
   authors: [{ name: 'Jiaren' }],
   openGraph: {
     title: 'Jiaren - Building the Future',
-    description: 'Hyyper-risks for leverage before superintelligence.',
+    description: 'Hyper-risks for leverage before superintelligence.',
     type: 'website',
     locale: 'en_US',
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Jiaren - Building the Future',
-    description: 'Hyyper-risks for leverage before superintelligence.',
+    description: 'Hyper-risks for leverage before superintelligence.',
   },
 }
 

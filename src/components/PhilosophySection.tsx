@@ -13,7 +13,7 @@ export function PhilosophySection() {
     "Creating superintelligence is creating a potential tyrant",
     "To avoid tyranny, superintelligence must be created in decentralized form. Regulations can kill innovation but also course correct us",
     "The only innovation worth pursuing is the one that serves human with dignity",
-    "System must be geniusly combined with love"
+    "System must be ingeniously combined with love"
   ]
 
   // Luxury Animation Configurations

@@ -13,7 +13,7 @@ const pageVariants = {
 }
 
 export function HeroSection() {
-  const tagline = "Hyyper-risks for leverage before superintelligence."
+  const tagline = "Hyper-risks for leverage before superintelligence."
 
   return (
     <motion.section
@@ -30,7 +30,7 @@ export function HeroSection() {
         <motion.h1 
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.5, delay: 0.5, ease: "easeOut" }}
+          transition={{ duration: 1.2, delay: 0.3, ease: "easeOut" }}
           className="text-6xl md:text-7xl lg:text-8xl font-light mb-8"
           style={{ 
             color: '#ffffff', 
@@ -46,13 +46,13 @@ export function HeroSection() {
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 1 }}
+          transition={{ duration: 0.8, delay: 0.8 }}
           className="mb-16"
         >
           <div className="text-xl md:text-2xl leading-relaxed text-gray-200 max-w-4xl mx-auto">
             <TypewriterText 
               text={tagline}
-              delay={2000}
+              delay={1500}
               speed={50}
               style={{ 
                 color: '#e0e0e0', 
