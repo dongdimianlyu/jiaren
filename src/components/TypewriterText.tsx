@@ -54,3 +54,34 @@ export function TypewriterText({
     </span>
   )
 }
+
+// Enhanced Typing Animation for Philosophy Text
+interface TypingPhilosophyProps {
+  text: string
+  className?: string
+  style?: React.CSSProperties
+}
+
+export function TypingPhilosophy({ text, className = '', style = {} }: TypingPhilosophyProps) {
+  const [displayText, setDisplayText] = useState('')
+  
+  useEffect(() => {
+    let i = 0
+    const startTyping = setTimeout(() => {
+      const interval = setInterval(() => {
+        if (i < text.length) {
+          setDisplayText(prev => prev + text.charAt(i))
+          i++
+        } else {
+          clearInterval(interval)
+        }
+      }, 40) // Slower, more deliberate
+      
+      return () => clearInterval(interval)
+    }, 1500) // Initial delay
+    
+    return () => clearTimeout(startTyping)
+  }, [text])
+  
+  return <span className={className} style={style}>{displayText}</span>
+}

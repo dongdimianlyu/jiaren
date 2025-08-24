@@ -1,6 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import { TypingPhilosophy } from './TypewriterText'
 
 export function PhilosophySection() {
   const principles = [
@@ -15,41 +16,61 @@ export function PhilosophySection() {
     "System must be geniusly combined with love"
   ]
 
-  // Scroll-triggered Animations
+  // Luxury Animation Configurations
+  const luxuryAnimations = {
+    fadeIn: { duration: 1.5, ease: "easeOut" },
+    scrollReveal: { 
+      duration: 1.2, 
+      stagger: 0.3,
+      ease: "easeOut"
+    },
+    hover: { 
+      duration: 0.6, 
+      ease: "easeOut" 
+    }
+  }
+
+  // Scroll-triggered Animations with luxury timings
   const scrollVariants = {
     hidden: { 
       opacity: 0, 
       y: 50,
-      transition: { duration: 0.6 }
+      transition: { duration: luxuryAnimations.fadeIn.duration }
     },
     visible: { 
       opacity: 1, 
       y: 0,
       transition: { 
-        duration: 1.2, 
-        ease: "easeOut",
-        staggerChildren: 0.2
+        duration: luxuryAnimations.scrollReveal.duration, 
+        ease: luxuryAnimations.scrollReveal.ease,
+        staggerChildren: luxuryAnimations.scrollReveal.stagger
       }
     }
   }
 
-  // Stagger Animation for Cards  
+  // Stagger Animation for Cards with luxury timings
   const cardVariants = {
     hidden: { opacity: 0, y: 30 },
     visible: { 
       opacity: 1, 
       y: 0,
-      transition: { duration: 0.8, ease: "easeOut" }
+      transition: { 
+        duration: luxuryAnimations.scrollReveal.duration, 
+        ease: luxuryAnimations.scrollReveal.ease 
+      }
     }
   }
 
-  // Hover Animations
+  // Hover Animations with luxury timings
   const hoverVariants = {
     rest: { scale: 1, opacity: 1 },
     hover: { 
       scale: 1.02, 
       opacity: 0.9,
-      transition: { duration: 0.4, ease: "easeOut" }
+      transition: { 
+        duration: luxuryAnimations.hover.duration, 
+        ease: luxuryAnimations.hover.ease 
+      }
     }
   }
 
@@ -59,8 +80,8 @@ export function PhilosophySection() {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 1.2,
-        ease: "easeOut"
+        duration: luxuryAnimations.fadeIn.duration,
+        ease: luxuryAnimations.fadeIn.ease
       }
     }
   }
@@ -110,7 +131,18 @@ export function PhilosophySection() {
                     lineHeight: 1.8
                   }}
                 >
-                  {principle}
+                  {index === 0 ? (
+                    <TypingPhilosophy 
+                      text={principle}
+                      className="text-xl md:text-2xl leading-relaxed"
+                      style={{ 
+                        color: 'var(--text-dimmed)',
+                        lineHeight: 1.8
+                      }}
+                    />
+                  ) : (
+                    principle
+                  )}
                 </p>
               </motion.div>
             </motion.div>
