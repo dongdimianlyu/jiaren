@@ -14,8 +14,6 @@ export const metadata: Metadata = {
   description: 'Building startups: iterating, failing, and learning. Taking hyper-risks for leverage before superintelligence. Creating what could become tyrant or servant.',
   keywords: ['entrepreneur', 'startup', 'founder', 'AI', 'technology', 'future'],
   authors: [{ name: 'Jiaren' }],
-  viewport: 'width=device-width, initial-scale=1',
-  themeColor: '#000000',
   openGraph: {
     title: 'Jiaren - Building the Future',
     description: 'Building startups: iterating, failing, and learning. Taking hyper-risks for leverage before superintelligence.',
@@ -27,6 +25,12 @@ export const metadata: Metadata = {
     title: 'Jiaren - Building the Future',
     description: 'Building startups: iterating, failing, and learning. Taking hyper-risks for leverage before superintelligence.',
   },
+}
+
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  themeColor: '#000000',
 }
 
 export default function RootLayout({

@@ -20,6 +20,7 @@
     "three": "^0.158.0"
   },
   "devDependencies": {
+    "@types/locomotive-scroll": "^4.1.4",
     "@types/node": "^20.8.0",
     "@types/react": "^18.2.0",
     "@types/react-dom": "^18.2.0",

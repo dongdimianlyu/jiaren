@@ -2,7 +2,6 @@
 
 import { motion } from 'framer-motion'
 import { ParticleSystem } from './ParticleSystem'
-import { SmoothScroll } from './SmoothScroll'
 
 interface LayoutWrapperProps {
   children: React.ReactNode
@@ -10,22 +9,20 @@ interface LayoutWrapperProps {
 
 export function LayoutWrapper({ children }: LayoutWrapperProps) {
   return (
-    <div className="relative min-h-screen" style={{ background: 'var(--bg-primary)' }}>
+    <div className="relative min-h-screen" style={{ background: '#000000' }}>
       {/* Particle System Background */}
       <ParticleSystem />
       
-      {/* Smooth Scroll Wrapper */}
-      <SmoothScroll>
-        {/* Main Content */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1.2, ease: "easeOut" }}
-          className="relative z-20"
-        >
-          {children}
-        </motion.div>
-      </SmoothScroll>
+      {/* Main Content */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1.2, ease: "easeOut" }}
+        className="relative z-20"
+        style={{ minHeight: '100vh' }}
+      >
+        {children}
+      </motion.div>
     </div>
   )
 }
