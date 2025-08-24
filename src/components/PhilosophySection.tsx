@@ -13,31 +13,41 @@ export function PhilosophySection() {
     "the success of a company is measured by its research contribution and net-impact"
   ]
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-        delayChildren: 0.3
+  // Scroll-triggered Animations
+  const scrollVariants = {
+    hidden: { 
+      opacity: 0, 
+      y: 50,
+      transition: { duration: 0.6 }
+    },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: { 
+        duration: 1.2, 
+        ease: "easeOut",
+        staggerChildren: 0.2
       }
     }
   }
 
-  const itemVariants = {
-    hidden: { 
-      opacity: 0, 
-      y: 30,
-      scale: 0.95
-    },
-    visible: {
-      opacity: 1,
+  // Stagger Animation for Cards  
+  const cardVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: { 
+      opacity: 1, 
       y: 0,
-      scale: 1,
-      transition: {
-        duration: 1,
-        ease: "easeOut"
-      }
+      transition: { duration: 0.8, ease: "easeOut" }
+    }
+  }
+
+  // Hover Animations
+  const hoverVariants = {
+    rest: { scale: 1, opacity: 1 },
+    hover: { 
+      scale: 1.02, 
+      opacity: 0.9,
+      transition: { duration: 0.4, ease: "easeOut" }
     }
   }
 
@@ -54,18 +64,19 @@ export function PhilosophySection() {
   }
 
   return (
-    <section 
-      id="philosophy" 
-      className="py-32 px-8"
+    <motion.section
+      id="philosophy"
+      variants={scrollVariants}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, margin: "-100px" }}
+      className="py-20 px-8"
       style={{ background: 'var(--bg-primary)' }}
     >
       <div className="max-w-5xl mx-auto">
         <motion.h2 
-          variants={titleVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.3 }}
-          className="text-5xl md:text-6xl font-bold mb-20 text-center"
+          variants={cardVariants}
+          className="text-4xl md:text-5xl font-bold mb-12 text-center"
           style={{ 
             color: 'var(--text-primary)',
             letterSpacing: '-0.02em'
@@ -75,31 +86,31 @@ export function PhilosophySection() {
         </motion.h2>
         
         <motion.div 
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
+          variants={scrollVariants}
           className="space-y-8"
         >
           {principles.map((principle, index) => (
-            <motion.div 
+            <motion.div
               key={index}
-              variants={itemVariants}
-              className="minimal-card p-8 md:p-12 accent-border group"
-              whileHover={{
-                scale: 1.02,
-                transition: { duration: 0.3 }
-              }}
+              variants={cardVariants}
+              initial="rest"
+              whileHover="hover"
+              animate="rest"
             >
-              <p 
-                className="text-xl md:text-2xl leading-relaxed"
-                style={{ 
-                  color: 'var(--text-dimmed)',
-                  lineHeight: 1.8
-                }}
+              <motion.div 
+                variants={hoverVariants}
+                className="minimal-card p-8 md:p-12 accent-border cursor-pointer border border-gray-800 rounded-lg"
               >
-                {principle}
-              </p>
+                <p 
+                  className="text-xl md:text-2xl leading-relaxed"
+                  style={{ 
+                    color: 'var(--text-dimmed)',
+                    lineHeight: 1.8
+                  }}
+                >
+                  {principle}
+                </p>
+              </motion.div>
             </motion.div>
           ))}
         </motion.div>
@@ -118,6 +129,6 @@ export function PhilosophySection() {
           />
         </motion.div>
       </div>
-    </section>
+    </motion.section>
   )
 }

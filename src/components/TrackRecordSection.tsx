@@ -54,31 +54,41 @@ export function TrackRecordSection() {
 
   const selectedData = achievements.find(a => a.id === selectedAchievement) || achievements[0]
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.3,
-        delayChildren: 0.2
+  // Scroll-triggered Animations
+  const scrollVariants = {
+    hidden: { 
+      opacity: 0, 
+      y: 50,
+      transition: { duration: 0.6 }
+    },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: { 
+        duration: 1.2, 
+        ease: "easeOut",
+        staggerChildren: 0.2
       }
     }
   }
 
+  // Stagger Animation for Cards
   const cardVariants = {
-    hidden: { 
-      opacity: 0, 
-      y: 40,
-      scale: 0.95
-    },
-    visible: {
-      opacity: 1,
+    hidden: { opacity: 0, y: 30 },
+    visible: { 
+      opacity: 1, 
       y: 0,
-      scale: 1,
-      transition: {
-        duration: 0.8,
-        ease: "easeOut"
-      }
+      transition: { duration: 0.8, ease: "easeOut" }
+    }
+  }
+
+  // Hover Animations
+  const hoverVariants = {
+    rest: { scale: 1, opacity: 1 },
+    hover: { 
+      scale: 1.02, 
+      opacity: 0.9,
+      transition: { duration: 0.4, ease: "easeOut" }
     }
   }
 
@@ -102,93 +112,91 @@ export function TrackRecordSection() {
   }
 
   return (
-    <section 
-      id="track-record" 
-      className="py-32 px-8"
+    <motion.section
+      id="track-record"
+      variants={scrollVariants}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, margin: "-100px" }}
+      className="py-20 px-8"
       style={{ background: 'var(--bg-primary)' }}
     >
       <div className="max-w-7xl mx-auto">
         {/* Section title */}
-        <motion.div 
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 1.2, ease: "easeOut" }}
-          className="text-center mb-20"
+        <motion.h2 
+          variants={cardVariants} 
+          className="text-4xl md:text-5xl font-bold text-center mb-12"
+          style={{ 
+            color: 'var(--text-primary)',
+            letterSpacing: '-0.02em'
+          }}
         >
-          <h2 
-            className="text-5xl md:text-6xl font-bold mb-8"
-            style={{ 
-              color: 'var(--text-primary)',
-              letterSpacing: '-0.02em'
-            }}
-          >
-            Experience
-          </h2>
-          <p 
-            className="text-xl md:text-2xl max-w-4xl mx-auto"
-            style={{ 
-              color: 'var(--text-dimmed)',
-              lineHeight: 1.8
-            }}
-          >
-            Building the future through iterative innovation and calculated risks
-          </p>
-        </motion.div>
+          Track Record
+        </motion.h2>
+        
+        <motion.p 
+          variants={cardVariants} 
+          className="text-xl md:text-2xl text-center max-w-4xl mx-auto mb-20"
+          style={{ 
+            color: 'var(--text-dimmed)',
+            lineHeight: 1.8
+          }}
+        >
+          Building the future through iterative innovation and calculated risks
+        </motion.p>
 
         <div className="grid lg:grid-cols-3 gap-12">
           {/* Company selector */}
           <motion.div 
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.3 }}
+            variants={scrollVariants}
             className="lg:col-span-1"
           >
-            <div className="space-y-6">
+            <div className="space-y-8">
               {achievements.map((achievement, index) => (
-                <motion.button
+                <motion.div
                   key={achievement.id}
                   variants={cardVariants}
-                  onClick={() => setSelectedAchievement(achievement.id)}
-                  className={`w-full text-left p-6 minimal-card transition-all duration-400 ${
-                    selectedAchievement === achievement.id
-                      ? 'accent-border scale-105'
-                      : ''
-                  }`}
-                  whileHover={{
-                    scale: selectedAchievement === achievement.id ? 1.05 : 1.03,
-                    transition: { duration: 0.3 }
-                  }}
-                  whileTap={{ scale: 0.98 }}
+                  initial="rest"
+                  whileHover="hover"
+                  animate="rest"
                 >
-                  <div className="flex items-center justify-between mb-3">
-                    <h3 
-                      className="text-xl font-bold"
+                  <motion.button
+                    variants={hoverVariants}
+                    onClick={() => setSelectedAchievement(achievement.id)}
+                    className={`w-full text-left p-8 minimal-card cursor-pointer border border-gray-800 rounded-lg transition-colors duration-200 ${
+                      selectedAchievement === achievement.id
+                        ? 'accent-border bg-gray-900'
+                        : 'bg-gray-900'
+                    }`}
+                  >
+                    <div className="flex items-center justify-between mb-3">
+                      <h3 
+                        className="text-xl font-bold"
+                        style={{ color: 'var(--text-primary)' }}
+                      >
+                        {achievement.company}
+                      </h3>
+                      <span 
+                        className="text-sm font-medium"
+                        style={{ color: 'var(--text-secondary)' }}
+                      >
+                        {achievement.duration}
+                      </span>
+                    </div>
+                    <p 
+                      className="font-medium mb-3"
+                      style={{ color: 'var(--text-dimmed)' }}
+                    >
+                      {achievement.role}
+                    </p>
+                    <div 
+                      className="text-sm font-medium"
                       style={{ color: 'var(--text-primary)' }}
                     >
-                      {achievement.company}
-                    </h3>
-                    <span 
-                      className="text-sm font-medium"
-                      style={{ color: 'var(--text-secondary)' }}
-                    >
-                      {achievement.duration}
-                    </span>
-                  </div>
-                  <p 
-                    className="font-medium mb-3"
-                    style={{ color: 'var(--text-dimmed)' }}
-                  >
-                    {achievement.role}
-                  </p>
-                  <div 
-                    className="text-sm font-medium"
-                    style={{ color: 'var(--text-primary)' }}
-                  >
-                    {achievement.metrics || 'Active'}
-                  </div>
-                </motion.button>
+                      {achievement.metrics || 'Active'}
+                    </div>
+                  </motion.button>
+                </motion.div>
               ))}
             </div>
           </motion.div>
@@ -329,6 +337,6 @@ export function TrackRecordSection() {
           />
         </motion.div>
       </div>
-    </section>
+    </motion.section>
   )
 }
