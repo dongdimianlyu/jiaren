@@ -13,7 +13,7 @@ const pageVariants = {
 }
 
 export function HeroSection() {
-  const tagline = "Building startups: iterating, failing, and learning. Taking hyper-risks for leverage before superintelligence. Creating what could become tyrant or servant. Simultaneously repelled and welcoming the inexhaustible possibilities of the future."
+  const tagline = "Hyyper-risks for leverage before superintelligence."
 
   return (
     <motion.section

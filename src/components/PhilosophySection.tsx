@@ -6,11 +6,13 @@ export function PhilosophySection() {
   const principles = [
     "the deployment of general robots at scale will reshape society",
     "the best people should work on the most important problems",
-    "the most beautiful art is created at the research frontier", 
     "the only acceptable speed is as fast as physically possible",
-    "the only challenges worth overcoming are hard",
-    "the magnitude of the opportunities ahead require a delusional ambition",
-    "the success of a company is measured by its research contribution and net-impact"
+    "Superintelligence is inevitable",
+    "It's risky to not take risks",
+    "Creating superintelligence is creating a potential tyrant",
+    "To avoid tyranny, superintelligence must be created in decentralized form. Regulations can kill innovation but also course correct us",
+    "The only innovation worth pursuing is the one that serves human with dignity",
+    "System must be geniusly combined with love"
   ]
 
   // Scroll-triggered Animations
